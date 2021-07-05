@@ -1,5 +1,8 @@
 import { GetStaticPaths, GetStaticProps } from 'next';
-
+import Image from 'next/image';
+import Prismic from '@prismicio/client';
+import { useRouter } from 'next/router';
+import { Header } from '../../components/Header';
 import { getPrismicClient } from '../../services/prismic';
 
 import commonStyles from '../../styles/common.module.scss';
@@ -26,20 +29,58 @@ interface PostProps {
   post: Post;
 }
 
-// export default function Post() {
-//   // TODO
-// }
+export default function Post({ post }: PostProps): JSX.Element {
+  const router = useRouter();
 
-// export const getStaticPaths = async () => {
-//   const prismic = getPrismicClient();
-//   const posts = await prismic.query(TODO);
+  if (router.isFallback) {
+    return <div>Carregando...</div>;
+  }
 
-//   // TODO
-// };
+  return (
+    <>
+      <Header />
+      <Image src={post.data.banner.url} alt="Banner" layout="fill" />
+      <main>
+        <h1>{post.data.title}</h1>
+        <div>
+          <div>
+            <small>{post.first_publication_date}</small>
+          </div>
 
-// export const getStaticProps = async context => {
-//   const prismic = getPrismicClient();
-//   const response = await prismic.getByUID(TODO);
+          <div>
+            <small>{post.data.author}</small>
+          </div>
 
-//   // TODO
-// };
+          <div>
+            <small>4 min</small>
+          </div>
+        </div>
+      </main>
+    </>
+  );
+}
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const prismic = getPrismicClient();
+  const posts = await prismic.query(
+    Prismic.predicates.at('document.type', 'posts')
+  );
+
+  const paths = posts.results.map(post => ({
+    params: { slug: post.uid },
+  }));
+
+  return {
+    paths,
+    fallback: true,
+  };
+};
+
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  const prismic = getPrismicClient();
+  const post = await prismic.getByUID('posts', String(params.slug), {});
+
+  return {
+    props: { post },
+  };
+};

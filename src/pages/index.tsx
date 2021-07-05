@@ -65,7 +65,7 @@ export default function Home({ postsPagination }: HomeProps): JSX.Element {
       <div className={styles.container}>
         <Header />
 
-        <div className={styles.postList}>
+        <main className={styles.postList}>
           {postList.map(post => (
             <PostItem
               key={post.uid}
@@ -76,7 +76,7 @@ export default function Home({ postsPagination }: HomeProps): JSX.Element {
               createdAt={post.first_publication_date}
             />
           ))}
-        </div>
+        </main>
 
         {nextPage && (
           <button

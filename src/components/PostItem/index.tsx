@@ -19,7 +19,7 @@ export function PostItem({
   link,
 }: PostItemProps): JSX.Element {
   return (
-    <Link href={`/${link}`} passHref>
+    <Link href={`/post/${link}`} passHref>
       <div className={styles.container}>
         <h1>{title}</h1>
         <p>{subtitle}</p>
