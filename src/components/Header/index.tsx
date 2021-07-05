@@ -1,7 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-import logo from '../../../public/Logo.svg';
 import styles from './header.module.scss';
 
 export function Header(): JSX.Element {
@@ -9,7 +8,7 @@ export function Header(): JSX.Element {
     <header className={styles.header}>
       <Link href="/" passHref>
         <a>
-          <Image src={logo} alt="logo" />
+          <Image src="/Logo.svg" width={238.62} height={25.63} alt="logo" />
         </a>
       </Link>
     </header>

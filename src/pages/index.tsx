@@ -3,12 +3,12 @@ import Head from 'next/head';
 import { GetStaticProps } from 'next';
 import Prismic from '@prismicio/client';
 
-import { Header } from 'components/Header';
-import { PostItem } from 'components/PostItem';
+import { Header } from '../components/Header';
+import { PostItem } from '../components/PostItem';
 
-import { getPrismicClient } from 'services/prismic';
+import { getPrismicClient } from '../services/prismic';
 
-import { format } from 'util/format';
+import { format } from '../util/format';
 import styles from './home.module.scss';
 
 interface Post {
@@ -69,6 +69,7 @@ export default function Home({ postsPagination }: HomeProps): JSX.Element {
           {postList.map(post => (
             <PostItem
               key={post.uid}
+              link={post.uid}
               title={post.data.title}
               subtitle={post.data.subtitle}
               author={post.data.author}
