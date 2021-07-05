@@ -20,23 +20,21 @@ export function PostItem({
 }: PostItemProps): JSX.Element {
   return (
     <Link href={`/${link}`} passHref>
-      <a>
-        <div className={styles.container}>
-          <h1>{title}</h1>
-          <p>{subtitle}</p>
+      <div className={styles.container}>
+        <h1>{title}</h1>
+        <p>{subtitle}</p>
 
-          <div className={styles.info}>
-            <div>
-              <FiCalendar size={20} />
-              <small>{createdAt}</small>
-            </div>
-            <div>
-              <FiUser size={20} />
-              <small>{author}</small>
-            </div>
+        <div className={styles.info}>
+          <div>
+            <FiCalendar size={20} />
+            <small>{createdAt}</small>
+          </div>
+          <div>
+            <FiUser size={20} />
+            <small>{author}</small>
           </div>
         </div>
-      </a>
+      </div>
     </Link>
   );
 }
