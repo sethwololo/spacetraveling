@@ -1,0 +1,38 @@
+.container {
+  text-decoration: none;
+  cursor: pointer;
+  transition: filter 0.2s;
+
+  &:hover {
+    filter: brightness(0.8);
+  }
+
+  h1 {
+    font-size: 1.889rem;
+    margin-bottom: 0.444rem;
+  }
+
+  & + div {
+    margin-top: 2.667rem;
+  }
+}
+
+.info {
+  display: flex;
+  flex-direction: row;
+  margin-top: 1.333rem;
+
+  div {
+    display: flex;
+    align-items: center;
+    color: var(--info);
+
+    svg {
+      margin-right: 0.444rem;
+    }
+  }
+
+  div + div {
+    margin-left: 1.333rem;
+  }
+}

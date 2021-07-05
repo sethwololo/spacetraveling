@@ -1,1 +1,23 @@
-// TODO
+@import "../styles/common.module.scss";
+
+.container {
+  @extend .widthContainer;
+  margin: 4.444rem auto;
+}
+
+.postList {
+  margin: 3.556rem auto;
+}
+
+.loadPosts {
+  border: none;
+  background: transparent;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--highlight);
+  transition: filter 0.2s;
+
+  &:hover {
+    filter: brightness(0.8);
+  }
+}

@@ -1,1 +1,14 @@
 // TODO
+@import "../../styles/common.module.scss";
+
+.header {
+  @extend .widthContainer;
+  margin: 0 auto;
+
+  a {
+    transition: filter 0.2s;
+    &:hover {
+      filter: brightness(0.8);
+    }
+  }
+}
