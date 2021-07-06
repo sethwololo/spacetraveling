@@ -2,11 +2,13 @@ import { GetStaticPaths, GetStaticProps } from 'next';
 import Image from 'next/image';
 import Prismic from '@prismicio/client';
 import { useRouter } from 'next/router';
+import { FiUser, FiCalendar, FiClock } from 'react-icons/fi';
+import { RichText } from 'prismic-dom';
 import { Header } from '../../components/Header';
 import { getPrismicClient } from '../../services/prismic';
 
-import commonStyles from '../../styles/common.module.scss';
 import styles from './post.module.scss';
+import { format } from '../../util/format';
 
 interface Post {
   first_publication_date: string | null;
@@ -36,25 +38,62 @@ export default function Post({ post }: PostProps): JSX.Element {
     return <div>Carregando...</div>;
   }
 
+  const words = post.data.content.reduce((prev, curr) => {
+    const body = RichText.asText(curr.body);
+    const wordArray = body.split(' ');
+    return wordArray.length + prev;
+  }, 0);
+
+  const readingTime = Math.ceil(words / 183);
+
+  const formattedHour = format(post.first_publication_date);
+
   return (
     <>
       <Header />
-      <Image src={post.data.banner.url} alt="Banner" layout="fill" />
-      <main>
+      <div className={styles.banner}>
+        <Image
+          src={post.data.banner.url}
+          alt="Banner"
+          layout="fill"
+          objectFit="cover"
+        />
+      </div>
+
+      <main className={styles.post}>
         <h1>{post.data.title}</h1>
-        <div>
+        <div className={styles.info}>
           <div>
-            <small>{post.first_publication_date}</small>
+            <FiCalendar size={20} />
+            <small>{formattedHour}</small>
           </div>
 
           <div>
+            <FiUser size={20} />
             <small>{post.data.author}</small>
           </div>
 
           <div>
-            <small>4 min</small>
+            <FiClock size={20} />
+            <small>{readingTime} min</small>
           </div>
         </div>
+
+        <article className={styles.contentContainer}>
+          {post.data.content.map(group => {
+            return (
+              <section className={styles.contentSection} key={group.heading}>
+                <h2>{group.heading}</h2>
+                <div
+                  // eslint-disable-next-line react/no-danger
+                  dangerouslySetInnerHTML={{
+                    __html: RichText.asHtml(group.body),
+                  }}
+                />
+              </section>
+            );
+          })}
+        </article>
       </main>
     </>
   );

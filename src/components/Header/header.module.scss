@@ -3,8 +3,10 @@
 
 .header {
   @extend .widthContainer;
-  margin: 0 auto;
 
+  margin: 0 auto;
+  padding-top: 2.667rem;
+  padding-bottom: 2.667rem;
   a {
     transition: filter 0.2s;
     &:hover {

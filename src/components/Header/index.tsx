@@ -8,7 +8,7 @@ export function Header(): JSX.Element {
     <header className={styles.header}>
       <Link href="/" passHref>
         <a>
-          <Image src="/Logo.svg" width={238.62} height={25.63} alt="logo" />
+          <Image src="/logo.svg" width={238.62} height={25.63} alt="logo" />
         </a>
       </Link>
     </header>
