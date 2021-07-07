@@ -1,5 +1,6 @@
 import { GetStaticPaths, GetStaticProps } from 'next';
 import Image from 'next/image';
+import Script from 'next/script';
 import Prismic from '@prismicio/client';
 import { useRouter } from 'next/router';
 import { FiUser, FiCalendar, FiClock } from 'react-icons/fi';
@@ -9,6 +10,7 @@ import { getPrismicClient } from '../../services/prismic';
 
 import styles from './post.module.scss';
 import { format } from '../../util/format';
+import { Comments } from '../../components/Comments';
 
 interface Post {
   first_publication_date: string | null;
@@ -94,6 +96,7 @@ export default function Post({ post }: PostProps): JSX.Element {
             );
           })}
         </article>
+        <Comments />
       </main>
     </>
   );
