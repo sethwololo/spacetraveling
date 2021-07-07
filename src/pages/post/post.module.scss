@@ -3,11 +3,12 @@
 .banner {
   position: relative;
   height: 400px;
+  margin-bottom: 4.444rem;
 }
 
 .post {
   @extend .widthContainer;
-  margin: 4.444rem auto;
+  margin: 0 auto;
 
   h1 {
     font-size: 2.667rem;
@@ -52,5 +53,35 @@
 
   p {
     margin: 1.389rem 0;
+  }
+}
+.footer {
+  @extend .widthContainer;
+  margin: 0 auto;
+  border-top: 1px solid #D7D7D71a;
+
+  > div {
+    display: flex;
+    justify-content: space-between;
+
+    div {
+      margin-top: 2.667rem;
+      flex-direction: column;
+
+      a {
+        margin-top: 0.444rem;
+        text-decoration: none;
+        color: var(--highlight);
+        font-weight: 600;
+      }
+
+      & + div {
+        text-align: right;
+      }
+    }
+  }
+
+  > section {
+    margin: 4.444rem auto;
   }
 }

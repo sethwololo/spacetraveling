@@ -20,5 +20,5 @@ export function Comments(): JSX.Element {
     }
   }, []);
 
-  return <div ref={commentsDiv} />;
+  return <section ref={commentsDiv} />;
 }

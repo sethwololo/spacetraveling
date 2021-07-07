@@ -96,8 +96,20 @@ export default function Post({ post }: PostProps): JSX.Element {
             );
           })}
         </article>
-        <Comments />
       </main>
+      <footer className={styles.footer}>
+        <div>
+          <div>
+            <p>Como utilizar Hooks</p>
+            <a href="/">Post anterior</a>
+          </div>
+          <div>
+            <p>Criando um app CRA do Zero</p>
+            <a href="/">Próximo post</a>
+          </div>
+        </div>
+        <Comments />
+      </footer>
     </>
   );
 }
